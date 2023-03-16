@@ -1,0 +1,149 @@
+﻿@using System.Security.Claims;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Спортувай Активно</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Спортувай Активно</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+
+                        @if (User.IsInRole(FitnessClub3.Utility.Helper.Admin))
+                        {
+                            <li class="nav-item active">
+                                <div class="dropdown show">
+                                    <a class="nav-link active dropdown-toggle" href="#"
+                                       id="dropdownMenuLink"
+                                       data-toggle="dropdown"
+                                       aria-haspopup="true"
+                                       aria-expanded="false">
+                                        Меню
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="/IndividualTrainings/Index">Всички индивидуални тренировки</a>
+                                        <a class="dropdown-item" href="/GroupTrainings/Index">Всички групови тренировки</a>
+                                        <a class="dropdown-item" href="/GroupTrainingUsers/Index">Спортисти</a>
+                                        <a class="dropdown-item" href="/Accounts/Index">Всички потребители</a>
+                                        <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Register">Регистрация на потребител</a>
+                                    </div>
+                                </div>
+
+                            </li>
+                        }
+                        else if (User.IsInRole(FitnessClub3.Utility.Helper.IndividualTrainer))
+                        {
+                            string Id = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="IndividualTrainings" asp-action="Index">Моите тренировки</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="IndividualTrainings" asp-action="ShowSearchForm">Търсене</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Accounts" asp-action="PersonData" asp-route-id="@Id">Моите данни</a>
+                            </li>
+                        }
+                        else if (User.IsInRole(FitnessClub3.Utility.Helper.SportsMan))
+                        {
+                            string Id = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                            <li class="nav-item active">
+                                <div class="dropdown show">
+                                    <a class="nav-link active dropdown-toggle" href="#"
+                                       id="dropdownMenuLink"
+                                       data-toggle="dropdown"
+                                       aria-haspopup="true"
+                                       aria-expanded="false">
+                                        Моите Тренировки
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="IndividualTrainings" asp-action="Index">Индивидуални тренировки</a>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="GroupTrainings" asp-action="MyGroupTrainings">Групови Тренировки</a>
+                                    </div>
+                                </div>
+
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="GroupTrainings" asp-action="Index">Групови тренировки</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Accounts" asp-action="PersonData" asp-route-id="@Id">Моите данни</a>
+                            </li>
+                        }
+                        else if (User.IsInRole(FitnessClub3.Utility.Helper.GroupTrainer))
+                        {
+                            string Id = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="GroupTrainings" asp-action="Index">Моите тренировки</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Accounts" asp-action="PersonData" asp-route-id="@Id">Моите данни</a>
+                            </li>
+                        }
+                        else
+                        {
+                            
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="#Clubs">Клубове</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="#PriceCards">Цени карти</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="#News">Новини</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="#Contacts">Контакти</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="#AboutUs">За нас</a>
+                            </li>
+                        }
+
+                    </ul>
+                    @if (!this.User.Identity.IsAuthenticated)
+                    {
+                        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Регистрация/Вход</a>
+                    }
+                    else
+                    {
+                            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Здравей @User.Identity.Name!</a>
+                            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                <button type="submit" class="nav-link btn btn-link text-dark">Изход</button>
+                            </form>
+                        
+                    }
+                    @*<partial name="_LoginPartial" />*@
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container text-white">
+            &copy; 2022 - Спортувай Активно
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

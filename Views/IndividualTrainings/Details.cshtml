@@ -1,0 +1,74 @@
+﻿@model FitnessClub3.Models.IndividualTraining
+
+@{
+    ViewData["Title"] = "Детайли";
+}
+
+<h1>Детайли</h1>
+
+<div>
+    <h4>Тренировки</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Duration)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Duration)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TrainerName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TrainerName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SportsmanName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SportsmanName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsTrainerApproved)
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.IsTrainerApproved == true)
+            {
+                <p>Потвърден @Html.DisplayFor(model => model.IsTrainerApproved)</p>
+            }
+            else
+            {
+                <p>Непотвърден @Html.DisplayFor(model => model.IsTrainerApproved)</p>
+            }
+
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Редактирай</a> |
+    <a asp-action="Index">Назад към листа</a>
+</div>

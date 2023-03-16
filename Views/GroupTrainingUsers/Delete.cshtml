@@ -1,0 +1,38 @@
+﻿@model FitnessClub3.Models.GroupTrainingUser
+
+@{
+    ViewData["Title"] = "Премахни";
+}
+
+<h1>Премахни</h1>
+
+<h3>Сигурен ли си, че искаш да го премахнеш?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ApplicationUser)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ApplicationUser.Id)
+        </dd class>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SportsManName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SportsManName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.GroupTraining)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.GroupTraining.GroupTrainingId)
+        </dd class>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="GroupTrainingUserId" />
+        <input type="submit" value="Премахни" class="btn btn-danger" /> |
+        <a asp-action="Index">Назад към листа</a>
+    </form>
+</div>

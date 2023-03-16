@@ -1,0 +1,178 @@
+﻿<link rel="stylesheet" href="~/css/home.css" />
+
+@if (!this.User.Identity.IsAuthenticated)
+{
+    <div class="jumbotron1">
+        <h1>Направи първата стъпка</h1>
+        <div class="container">
+            <a href="/Identity/Account/Register"><button class="btn2">Започни сега</button></a>
+
+        </div>
+        <img src="~/images/5.jpg" />
+    </div>
+}
+@if (User.IsInRole(FitnessClub3.Utility.Helper.GroupTrainer))
+{
+    <div class="jumbotron bg-evetures w-75 mx-auto">
+        <h1 class="text-center">Здравей, @this.User.Identity.Name</h1>
+        <hr class="hr-2 bg-secondary" />
+        <h4 class="mt-4 text-secondary text-center">Груповите треньори създават групови тренировки и могат да видят кой се е записал.</h4>
+        <h3 class="mt-4">Моите <a href="/GroupTrainings/Index">тренировки</a>.</h3>
+    </div>
+}
+@if (User.IsInRole(FitnessClub3.Utility.Helper.IndividualTrainer))
+{
+    <div class="jumbotron bg-evetures w-75 mx-auto">
+        <h1 class="text-center">Здравей, @this.User.Identity.Name</h1>
+        <hr class="hr-2 bg-secondary" />
+        <h4 class="mt-4 text-secondary text-center">Индивидуалните треньори одобряват тренировките на спортитите, ако са съгласни с обстоятелствата.</h4>
+        <h3 class="mt-4">Моите <a href="/IndividualTrainings/Index">тренировки</a>.</h3>
+        @*<h3 class="mt-4">Create a <a href="/Events/Create">new event</a>.</h3>*@
+    </div>
+}
+@if (User.IsInRole(FitnessClub3.Utility.Helper.SportsMan))
+{
+    <div class="jumbotron bg-evetures w-75 mx-auto">
+        <h1 class="text-center">Здравей, @this.User.Identity.Name</h1>
+        <hr class="hr-2 bg-secondary" />
+        <h4 class="mt-4 text-secondary text-center">Най-лошата тренировка е пропуснатата!</h4>
+        <h3 class="mt-4">Можеш да си запазиш <a href="/IndividualTrainings/Index">индивидуална тренировка</a>, при когото треньор решиш.</h3>
+        <h3 class="mt-4">Можеш да провериш какви <a href="/GroupTrainings/Index">групови тренировки</a> предлагат нашите треньори.</h3>
+        <h3 class="mt-4">Тук можеш да видиш в какви <a href="/GroupTrainings/MyGroupTrainings">групови тренировки</a> си се присъединил.</h3>
+        @*<h3 class="mt-4">Create a <a href="/Events/Create">new event</a>.</h3>*@
+    </div>
+}
+
+@if (!this.User.Identity.IsAuthenticated)
+{
+    <h1 id="Clubs">Клубове</h1>
+    <table class="table table-secondary">
+        <tr>
+            <th>Титан</th>
+            <td><img src="~/images/3.jpg" /> Гр. София, улица "Цар Освободител" №17</td>
+            <td>
+                <p>Понеделник - Петък: 7:00-22:00</p>
+                <p>Събота и Неделя - 9:00-19:00</p>
+            </td>
+        </tr>
+        <tr>
+            <th>Олимп</th>
+            <td><img src="~/images/4.jpg" /> Гр. Пловдив, улица "Иван Вазов" №5</td>
+            <td>
+                <p>Понеделник - Петък: 7:00-22:00</p>
+                <p>Събота и Неделя - 9:00-19:00</p>
+            </td>
+        </tr>
+        <tr>
+            <th>Гладиатор</th>
+            <td><img src="~/images/8.jpg" /> Гр. Варна, улица "Мария-Луиза" №1</td>
+            <td>
+                <p>Понеделник - Петък: 7:00-22:00</p>
+                <p>Събота и Неделя - 9:00-19:00</p>
+            </td>
+        </tr>
+
+    </table>
+
+    <h1 id="PriceCards">Цени карти</h1>
+
+
+    <table class="table table-hover table-secondary">
+        <tr>
+            <th>
+                Вид
+            </th>
+            <th>
+                Цена
+            </th>
+            <th>
+                Валидност
+            </th>
+
+        </tr>
+
+        <tr>
+            <td>
+                Еднократно посещение
+            </td>
+            <td>
+                10 лева
+            </td>
+            <td>
+                1 посещение
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                Месечна карта
+            </td>
+            <td>
+                50 лева
+            </td>
+            <td>
+                1 месец
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>
+                Месечна карта за ученици
+            </td>
+            <td>
+                35 лева
+            </td>
+            <td>
+                1 месец
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>
+                Годишна карта
+            </td>
+            <td>
+                400 лева
+            </td>
+            <td>
+                1 година
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                Доплащане за една групова тренировка
+            </td>
+            <td>
+                4 лева
+            </td>
+            <td>
+                1 посещение
+            </td>
+
+        </tr>
+    </table>
+
+
+    <h1 id="News">Новини</h1>
+    <p>Няма нови новини.</p>
+
+
+    <h1 id="Contacts">Контакти</h1>
+    <p>Контакт:</p>
+    <p>Иво Стоянов</p>
+    <p>Телефон: 0884413689</p>
+    <p>Имейл: ivostoyanov49@gmail.com</p>
+
+
+    <h1 id="AboutUs">За нас</h1>
+    <p>
+        Спортувай Активно е платформа предоставяща услугите на фитнес зали. Целта ни е максимален брой хора да придобият навиците, които
+        изграждат нашето тяло, подобряватт имунната ни система и ни запазват в добро физическо здраве.
+    </p>
+    <p>Спортът е полезен за нас, защото подобрява здравето ни и така можем по-лесно да се предпазим от всякакъв вид болести.</p>
+
+    <a asp-area="" asp-controller="Home" asp-action="Index">Обратно</a>
+}

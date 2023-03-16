@@ -1,0 +1,43 @@
+﻿body {
+    background-image: url(../images/4.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+a {
+    color: white;
+}
+
+.btn2 {
+    height: 40px;
+    width: 150px;
+    background-color: grey;
+    color: white;
+}
+.btn2:hover{
+    color:blue;
+}
+.row {
+    padding-left: 20%;
+    width: 1320px;
+}
+
+.nav-link1 {
+    padding-left: 20px;
+}
+
+.formi {
+    padding-left: 30%;
+}
+
+    .formi a {
+        color: darkred;
+        border: initial;
+        font-size: 24px;
+    }
+/*label{
+    color:white;
+}*/
+h4 {
+    color: darkred;
+}

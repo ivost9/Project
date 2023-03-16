@@ -1,0 +1,73 @@
+﻿@model FitnessClub3.Models.ApplicationUser
+@using System.Security.Claims;
+
+@{
+    ViewData["Title"] = "Лична информация";
+}
+
+<h1>Лична информация</h1>
+
+
+<div>
+    <hr />
+    <dl class="row table table-hover table-secondary">
+        <dt class="col-sm-2">
+            Имейл
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class="col-sm-2">
+            Потребителско име
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MiddleName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MiddleName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+        <dt class="col-sm-2">
+            Телефонен номер
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+        @if (User.IsInRole(FitnessClub3.Utility.Helper.IndividualTrainer) || User.IsInRole(FitnessClub3.Utility.Helper.GroupTrainer))
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Photo)
+            </dt>
+            <dd class="col-sm-10">
+                <img src="~/images/@Model.Photo"
+                     class="rounded-circle"
+                     height="50" width="50"
+                     asp-append-version="true"
+                     alt="Photo" />
+            </dd>
+        }
+
+    </dl>
+</div>
+

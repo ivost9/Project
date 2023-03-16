@@ -1,0 +1,54 @@
+﻿@model IEnumerable<FitnessClub3.Models.ApplicationUser>
+
+@{
+    ViewData["Title"] = "Потребители";
+}
+
+<h1>Всички потребители</h1>
+
+
+<table class="table table table-hover table-secondary">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Photo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoleName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <img src="~/images/@item.Photo"
+                         class="rounded-circle"
+                         height="50" width="50"
+                         asp-append-version="true"
+                         alt="Photo" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoleName)
+                </td>
+                <td>
+                    @if (item.RoleName!="Админ")
+                    {
+                        <a asp-action="Delete" asp-route-id="@item.Id">Премахни</a>
+                    }
+
+                </td>
+            </tr>
+
+        }
+
+    </tbody>
+</table>
